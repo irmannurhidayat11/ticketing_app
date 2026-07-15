@@ -9,8 +9,15 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
 
-// Event routes
+// Event Show route (Public)
 Route::get('/events/{event}', [EventController::class, 'show'])->name('events.show');
+
+// --- TAMBAHKAN KODE INI ---
+// Admin Event CRUD routes
+Route::middleware(['auth', 'verified'])->prefix('admin')->name('admin.')->group(function () {
+    Route::resource('events', EventController::class);
+});
+// --------------------------
 
 Route::get('/dashboard', [DashboardController::class, 'index'])->middleware(['auth', 'verified'])->name('dashboard');
 
