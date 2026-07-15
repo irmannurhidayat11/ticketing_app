@@ -8,19 +8,20 @@ return new class extends Migration {
     /**
      * Run the migrations.
      */
-    public function up(): void
-    {
-        Schema::create('events', function (Blueprint $table) {
-            $table->id();
-            $table->foreignId('user_id')->constrained()->onDelete('cascade');
-            $table->foreignId('kategori_id')->constrained()->onDelete('cascade');
-            $table->string('judul');
-            $table->text('deskripsi');
-            $table->string('lokasi');
-            $table->string('gambar');
-            $table->dateTime('tanggal_waktu');
-            $table->timestamps();
-        });
+   public function up()
+{
+    Schema::create('events', function (Blueprint $table) {
+        $table->id();
+        $table->foreignId('user_id')->constrained();
+        $table->foreignId('kategori_id')->constrained();
+        $table->string('judul');
+        $table->text('deskripsi');
+        $table->string('lokasi');
+        $table->string('gambar');
+        $table->dateTime('tanggal_waktu');
+        $table->timestamps();
+    });
+
     }
 
     /**
